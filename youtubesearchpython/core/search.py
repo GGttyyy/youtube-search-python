@@ -33,10 +33,10 @@ class SearchCore(RequestCore, RequestHandler, ComponentHandler):
         ''' Fixes #47 '''
         requestBody = copy.deepcopy(requestPayload)
         requestBody['query'] = self.query
-        requestBody['client'] = {
+        requestBody['context']['client'].update({
             'hl': self.language,
             'gl': self.region,
-        }
+        })
         if self.searchPreferences:
             requestBody['params'] = self.searchPreferences
         if self.continuationKey:
